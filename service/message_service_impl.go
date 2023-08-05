@@ -18,6 +18,14 @@ type MessageServiceImpl struct {
 	Validate          *validator.Validate
 }
 
+func NewMessageService(messageRepository repository.MessageRepository, DB *sql.DB, validate *validator.Validate) MessageService {
+	return &MessageServiceImpl{
+		MessageRepository: messageRepository,
+		DB:                DB,
+		Validate:          validate,
+	}
+}
+
 func (service *MessageServiceImpl) Create(ctx context.Context, request web.MessageCreateRequest) web.MessageResponse {
 	err := service.Validate.Struct(request)
 	helper.PanicIfError(err)
