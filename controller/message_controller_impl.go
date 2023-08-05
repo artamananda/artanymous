@@ -14,6 +14,12 @@ type MessageControllerImpl struct {
 	MessageService service.MessageService
 }
 
+func NewMessageController(messageService service.MessageService) MessageController {
+	return &MessageControllerImpl{
+		MessageService: messageService,
+	}
+}
+
 func (controller *MessageControllerImpl) Create(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 	messageCreateRequest := web.MessageCreateRequest{}
 	helper.ReadFromRequestBody(request, &messageCreateRequest)
