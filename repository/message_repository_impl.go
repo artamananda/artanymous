@@ -14,6 +14,10 @@ import (
 type MessageRepositoryImpl struct {
 }
 
+func NewMessageRepository() MessageRepository {
+	return &MessageRepositoryImpl{}
+}
+
 func (repository *MessageRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, message domain.Message) domain.Message {
 	id := uuid.New()
 	SQL := "insert into messages(id, question, created_at) value (?, ?, ?)"
