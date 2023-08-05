@@ -7,7 +7,7 @@ import (
 )
 
 type MessageResponse struct {
-	Id        uuid.UUID
-	Question  string
-	CreatedAt time.Time
+	Id        uuid.UUID `json:"id"`
+	Question  string    `json:"question"`
+	CreatedAt time.Time `json:"created_at"`
 }
