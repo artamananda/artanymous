@@ -1,5 +1,5 @@
 package web
 
 type MessageCreateRequest struct {
-	Question string
+	Question string `validate:"required"`
 }
