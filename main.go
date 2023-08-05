@@ -23,9 +23,9 @@ func main() {
 
 	router := httprouter.New()
 
-	router.GET("/api/messages/", messageController.FindAll)
+	router.GET("/api/messages", messageController.FindAll)
 	router.GET("/api/messages/:messageId", messageController.FindById)
-	router.POST("/api/messages/", messageController.Create)
+	router.POST("/api/messages", messageController.Create)
 	router.DELETE("/api/messages/:messageId", messageController.Delete)
 
 	server := http.Server{
