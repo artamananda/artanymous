@@ -20,7 +20,7 @@ func NewMessageRepository() MessageRepository {
 
 func (repository *MessageRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, message domain.Message) domain.Message {
 	id := uuid.New()
-	SQL := "insert into messages(id, question, created_at) value (?, ?, ?)"
+	SQL := "insert into messages(id, question, created_at) values ($1, $2, $3)"
 	_, err := tx.ExecContext(ctx, SQL, id, message.Question, time.Now())
 	helper.PanicIfError(err)
 
@@ -30,13 +30,13 @@ func (repository *MessageRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, m
 }
 
 func (repository *MessageRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx, message domain.Message) {
-	SQL := "delete from messages where id=?"
+	SQL := "delete from messages where id=$1"
 	_, err := tx.ExecContext(ctx, SQL, message.Id)
 	helper.PanicIfError(err)
 }
 
 func (repository *MessageRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx, messageId uuid.UUID) (domain.Message, error) {
-	SQL := "select id, question, created_at from messages where id = ?"
+	SQL := "select id, question, created_at from messages where id=$1"
 	rows, err := tx.QueryContext(ctx, SQL, messageId)
 	helper.PanicIfError(err)
 
