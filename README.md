@@ -1,17 +1,17 @@
 # ARTANYMOUS RESTful API
-An application like secreto.site. Anonymous question.
+An application like secreto.site. Anonymous message API.
 ## API Specs
 Servers:
 ```
-http:localhost:3000/api
+http:localhost:3000
 ```
 
-### Questions
-#### List all Questions
+### Messages
+#### List all Messages
 
 Endpoint:
 ```
-GET /questions
+GET /api/messages
 ```
 
 Request Header:
@@ -24,18 +24,19 @@ Response:
     "status" : "OK",
     "data" : [
         {
-            "id" : 1,
-            "question" : "string"
+            "id" : "69bcd738-b4eb-4f24-a838-25a0d7351ea4",
+            "question" : "Hello World",
+            "created_at": "2023-08-05T23:11:50.749697Z"
         }
     ]
 }
 ```
 
-#### Create new Questions
+#### Create new Messages
 
 Endpoint:
 ```
-POST /questions
+POST /api/messages
 ```
 
 Request Header:
@@ -44,7 +45,7 @@ Request Header:
 Request Body:
 ```
 {
-    "question" : "string"
+    "question" : "Hello World"
 }
 ```
 
@@ -55,17 +56,42 @@ Response:
     "status" : "OK",
     "data" : [
         {
-            "id" : 1,
-            "question" : "string"
+            "id": "69bcd738-b4eb-4f24-a838-25a0d7351ea4",
+            "question": "Hello World"
         }
     ]
 }
 ```
 
-#### Delete question by Id
+#### Find Messages by Id
+
 Endpoint:
 ```
-DELETE /questions/{questionId}
+GET /api/messages/:messageId
+```
+
+Request Header:
+- X-API-Key : Key (Mandatory)
+
+Response:
+```
+{
+    "code" : 200,
+    "status" : "OK",
+    "data" : [
+        {
+            "id" : "69bcd738-b4eb-4f24-a838-25a0d7351ea4",
+            "question" : "Hello World",
+            "created_at": "2023-08-05T23:11:50.749697Z"
+        }
+    ]
+}
+```
+
+#### Delete message by Id
+Endpoint:
+```
+DELETE /api/messages/:messageId
 ```
 
 Request Header:
