@@ -9,6 +9,6 @@ import (
 
 type MessageRepository interface {
 	Save(ctx context.Context, tx *sql.Tx, message domain.Message) domain.Message
-	Delete(ctx context.Context, tx *sql.Tx, message domain.Message) domain.Message
+	Delete(ctx context.Context, tx *sql.Tx, message domain.Message)
 	FindAll(ctx context.Context, tx *sql.Tx) []domain.Message
 }
