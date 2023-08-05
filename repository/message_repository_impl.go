@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"time"
 
 	"github.com/artamananda/artanymous/helper"
@@ -28,6 +29,21 @@ func (repository *MessageRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx,
 	SQL := "delete from messages where id=?"
 	_, err := tx.ExecContext(ctx, SQL, message.Id)
 	helper.PanicIfError(err)
+}
+
+func (repository *MessageRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx, messageId uuid.UUID) (domain.Message, error) {
+	SQL := "select id, question, created_at from messages where id = ?"
+	rows, err := tx.QueryContext(ctx, SQL, messageId)
+	helper.PanicIfError(err)
+
+	message := domain.Message{}
+	if rows.Next() {
+		err := rows.Scan(&message.Id, &message.Question, &message.CreatedAt)
+		helper.PanicIfError(err)
+		return message, nil
+	} else {
+		return message, errors.New("message is not found")
+	}
 }
 
 func (repository *MessageRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.Message {
