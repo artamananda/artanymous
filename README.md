@@ -3,7 +3,7 @@ An application like secreto.site. Anonymous message API.
 ## API Specs
 Servers:
 ```
-http:localhost:3000
+http://localhost:3000
 ```
 
 ### Messages
@@ -18,7 +18,7 @@ Request Header:
 - X-API-Key : Key (Mandatory)
 
 Response:
-```
+```json
 {
     "code" : 200,
     "status" : "OK",
@@ -43,14 +43,14 @@ Request Header:
 - X-API-Key : Key (Mandatory)
 
 Request Body:
-```
+```json
 {
     "question" : "Hello World"
 }
 ```
 
 Response:
-```
+```json
 {
     "code" : 200,
     "status" : "OK",
@@ -74,7 +74,7 @@ Request Header:
 - X-API-Key : Key (Mandatory)
 
 Response:
-```
+```json
 {
     "code" : 200,
     "status" : "OK",
@@ -98,7 +98,7 @@ Request Header:
 - X-API-Key : Key (Mandatory)
 
 Response:
-```
+```json
 {
     "code" : 200,
     "status" : "OK"
