@@ -6,6 +6,39 @@ Servers:
 http://localhost:3000
 ```
 
+### Users
+#### Create Users
+Endpoint:
+```
+POST /api/users
+```
+
+Request Header:
+- X-API-Key : Key (Mandatory)
+
+Request Body:
+```json
+{
+    "username" : "artamananda",
+    "password" : "rahasia123",
+    "email" : "example@gmail.com"
+}
+```
+
+Response:
+```json
+{
+    "code" : 200,
+    "status" : "OK",
+    "data" : [
+        {
+            "id" : "6fa9574d-7760-4616-9307-5aa83470de5e",
+            "username" : "artamananda"
+        }
+    ]
+}
+```
+
 ### Messages
 #### List all Messages
 
